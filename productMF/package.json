@@ -1,0 +1,11 @@
+{
+  "name": "@shopmore-mf-main/productmf",
+  "version": "1.0.0",
+  "description": "Product microfrontend that exposes home and product page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mrugesh",
+  "license": "ISC"
+}
