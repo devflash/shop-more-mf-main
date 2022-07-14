@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/index.js',
   mode: 'development',
   devServer: {
-    port: 8081,
+    port: 8082,
     static: {
       directory: path.join(__dirname, 'dist'),
     },
@@ -22,9 +22,10 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'authMf',
-      remotes: {
-        commonComponentMf: `commonComponentMf@//localhost:8082/remoteEntry.js`,
+      name: 'commonComponentMf',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Button': './src/components/button',
       },
       shared: {
         react: { singleton: true },

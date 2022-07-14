@@ -1,0 +1,28 @@
+{
+  "name": "@shop-more-mf-main/commoncomponentmf",
+  "version": "1.0.0",
+  "description": "A micro front-end that exposes common components in the shop more app ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve"
+  },
+  "author": "Mrugesh",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
+  },
+  "dependencies": {
+    "@emotion/babel-preset-css-prop": "^11.2.0",
+    "@emotion/react": "^11.9.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0"
+  }
+}
