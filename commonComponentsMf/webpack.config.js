@@ -26,11 +26,18 @@ module.exports = {
       filename: 'remoteEntry.js',
       exposes: {
         './Button': './src/components/button',
+        './Input': './src/components/input',
+        './Dialog': './src/components/dialog',
+        './Currency': './src/components/currency',
+        './Layout': './src/components/layout',
+        './Loader': './src/components/loader',
+        './Toast': './src/components/toast',
       },
-      shared: {
-        react: { singleton: true },
-        'react-dom/client': { singleton: true },
-      },
+      shared: [
+        { react: { requiredVersion: '^18.1.0' } },
+        'react-dom/client',
+        'react-icons',
+      ],
     }),
     new HtmlWebpackPlugin({
       template: './dist/index.html',

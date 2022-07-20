@@ -2,6 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import SignIn from './pages/signIn';
 import SignUp from './pages/signup';
+import Navigation from './components/navigation';
 
 import {
   BrowserRouter as Router,
@@ -15,13 +16,16 @@ const container = css`
 `;
 
 const App = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path="/signup" element={<SignUp />}></Route>
-      <Route path="/signIn" element={<SignIn />}></Route>
-      <Route path="/" element={<SignIn />}></Route>
-    </Routes>
-  </BrowserRouter>
+  <>
+    <BrowserRouter>
+      <Navigation />
+      <Routes>
+        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/signIn" element={<SignIn />}></Route>
+        <Route path="/" element={<SignIn />}></Route>
+      </Routes>
+    </BrowserRouter>
+  </>
 );
 
 export default App;
