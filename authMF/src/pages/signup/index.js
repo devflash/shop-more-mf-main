@@ -1,15 +1,18 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import Navigation from '../../components/navigation';
-
-const container = css`
-  background-color: blue;
+import Layout from 'commonComponentMf/Layout';
+import SignUpComp from '../../components/signup';
+const layoutStyle = css`
+  min-height: calc(100vh - 62px);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  height: auto;
 `;
+
 const SignUp = () => (
-  <div css={container}>
-    <Navigation />
-    <h1>Sign Up Page</h1>
-  </div>
+  <Layout customCss={layoutStyle}>
+    <SignUpComp />
+  </Layout>
 );
 
 export default SignUp;

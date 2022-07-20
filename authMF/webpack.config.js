@@ -26,10 +26,7 @@ module.exports = {
       remotes: {
         commonComponentMf: `commonComponentMf@//localhost:8082/remoteEntry.js`,
       },
-      shared: {
-        react: { singleton: true },
-        'react-dom/client': { singleton: true },
-      },
+      shared: [{ react: { requiredVersion: '^18.1.0' } }, 'react-dom/client'],
     }),
     new HtmlWebpackPlugin({
       template: './dist/index.html',
