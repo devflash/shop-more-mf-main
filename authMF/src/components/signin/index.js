@@ -2,12 +2,15 @@ import React, { useReducer } from 'react';
 import { css } from '@emotion/react';
 import Input from 'commonComponentMf/Input';
 import Button from 'commonComponentMf/Button';
+import Toast from 'commonComponentMf/Toast';
+import Loader from 'commonComponentMf/Loader';
+import config from '../../config';
+import useLoader from '../../hooks/useLoader';
+import axios from 'axios';
+import { getErrorMessage } from '../../utils/handleError';
+
 // import { useAuth } from '../../context';
 // import { useRouter } from 'next/router';
-// import { getErrorMessage } from '../../utils/handleError';
-// import Toast from '../common/toast';
-// import Loader from '../common/loader';
-// import useLoader from '../../hooks/useLoader';
 
 const flex = css`
   display: flex;
@@ -70,14 +73,13 @@ const initialState = {
   serviceError: '',
 };
 
-const SignIn = () => {
+const SignIn = ({ navigateRoute }) => {
   const [state, dispatch] = useReducer((state, newState) => {
     return { ...state, ...newState };
   }, initialState);
-
   //   const { signInUser } = useAuth();
-  //   const router = useRouter();
-  //   const [{ isLoading, isBackdrop }, setLoading] = useLoader({});
+  const [{ isLoading, isBackdrop }, setLoading] = useLoader({});
+  const { API_SERVER } = config;
 
   const onEmailChanged = (email) => {
     dispatch({ email, emailError: null });
@@ -109,8 +111,18 @@ const SignIn = () => {
       setLoading({ isLoading: true, isBackdrop: true });
 
       try {
-        await signInUser(state.email, state.password);
-        router.push('/');
+        // await signInUser(state.email, state.password);
+        // router.push('/');
+        const payload = {
+          email: state.email,
+          password: state.password,
+        };
+        const { data } = await axios.post(`${API_SERVER}/api/signIn`, payload);
+        if (data.msg === 'SIGNED_IN_SUCCESS') {
+          // setAuthUser(data.authUser);
+          // navigateRoute('/')
+          console.log('User Logged in');
+        }
       } catch (e) {
         const serviceError = getErrorMessage(e);
         dispatch({ serviceError });
@@ -121,13 +133,13 @@ const SignIn = () => {
 
   return (
     <div css={flex}>
-      {/* <Toast
+      <Toast
         open={state.serviceError}
         text={state.serviceError}
         callback={() => dispatch({ serviceError: '' })}
         isError={true}
       />
-      <Loader isLoading={isLoading} isBackdrop={isBackdrop} /> */}
+      <Loader isLoading={isLoading} isBackdrop={isBackdrop} />
 
       <div css={wrapper}>
         <h1>ShopMore</h1>
@@ -161,6 +173,7 @@ const SignIn = () => {
                 customCss={createBtn}
                 onClick={(e) => handleUserLogin(e)}
               ></Button>
+              <button onClick={() => navigate('/signUp')}>Change</button>
             </div>
           </form>
         </div>

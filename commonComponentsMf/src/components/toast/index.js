@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 const box = (isError) => css`
   position: fixed;
@@ -31,7 +31,7 @@ const Toast = ({ open, text, isError, callback }) => {
       if (interval) {
         clearInterval(interval);
       }
-      let interval = setTimeout(() => {
+      var interval = setTimeout(() => {
         callback();
       }, 5000);
     }
