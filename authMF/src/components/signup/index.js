@@ -1,15 +1,14 @@
-import React from 'react';
-import { useReducer } from 'react';
+import React, { useReducer } from 'react';
 import { css } from '@emotion/react';
 import Input from 'commonComponentMf/Input';
-import Button from 'commonComponentMf/Button';
 // import { useAuth } from '../../context';
-// import { firestore } from '../../utils/firebase';
-// import { useRouter } from 'next/router';
-// import { getErrorMessage } from '../../utils/handleError';
-// import Toast from '../common/toast';
-// import Loader from '../common/loader';
-// import useLoader from '../../hooks/useLoader';
+import Button from 'commonComponentMf/Button';
+import { getErrorMessage } from '../../utils/handleError';
+import Toast from 'commonComponentMf/Toast';
+import Loader from 'commonComponentMf/Loader';
+import useLoader from '../../hooks/useLoader';
+import config from '../../config';
+import axios from 'axios';
 
 const flex = css`
   display: flex;
@@ -66,15 +65,12 @@ const initialState = {
   success: null,
 };
 
-const SignUp = () => {
-  //   const { createUser } = useAuth();
-  //   const router = useRouter();
-
+const SignUp = ({ navigateRoute }) => {
   const [state, dispatch] = useReducer((state, newState) => {
     return { ...state, ...newState };
   }, initialState);
-  //   const [{ isLoading, isBackdrop }, setLoading] = useLoader({});
-
+  const [{ isLoading, isBackdrop }, setLoading] = useLoader({});
+  const { API_SERVER } = config;
   const onFirstNameChanged = (firstName) => {
     dispatch({ firstName, firstNameError: null });
   };
@@ -117,41 +113,40 @@ const SignUp = () => {
       setLoading({ isLoading: true, isBackdrop: true });
 
       try {
-        const user = await createUser(
-          state.email,
-          state.password,
-          `${state.firstName} ${state.lastName}`
-        );
         const payload = {
+          email: state.email,
+          password: state.password,
           firstName: state.firstName,
           lastName: state.lastName,
         };
-        await firestore.collection('users').doc(user.user.id).set(payload);
-        dispatch({
-          firstName: '',
-          lastName: '',
-          email: '',
-          password: '',
-          success: 'Your account has been created successfuly',
-        });
-        router.push(' /');
+        const { data } = await axios.post(`${API_SERVER}/api/signUp`, payload);
+        if (data.msg === 'ACCOUNT_CREATED') {
+          // setAuthUser(data.authUser);
+          dispatch({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            success: 'Your account has been created successfuly',
+          });
+          // navigateRoute('/')
+        }
       } catch (e) {
         const errorMessage = getErrorMessage(e);
         dispatch({ serviceError: errorMessage });
-        console.log(e.code);
       }
     }
     setLoading({ isLoading: false, isBackdrop: false });
   };
   return (
     <div css={flex}>
-      {/* <Toast
+      <Toast
         open={state.serviceError || state.success}
         text={state.serviceError || state.success}
         callback={() => dispatch({ serviceError: '', success: '' })}
         isError={state.serviceError ? true : false}
       />
-      <Loader isLoading={isLoading} isBackdrop={isBackdrop} /> */}
+      <Loader isLoading={isLoading} isBackdrop={isBackdrop} />
 
       <div css={wrapper}>
         <h1>ShopMore</h1>
