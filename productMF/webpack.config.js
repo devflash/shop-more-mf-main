@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const { ModuleFederationPlugin } = require('webpack').container;
+const { ModuleFederationPlugin } = require('webpack').container;
 const Dotenv = require('dotenv-webpack');
 
 module.exports = (env) => {
@@ -23,6 +23,13 @@ module.exports = (env) => {
       ],
     },
     plugins: [
+      new ModuleFederationPlugin({
+        name: 'productMf',
+        remotes: {
+          commonComponentMf: `commonComponentMf@//localhost:8082/remoteEntry.js`,
+        },
+        shared: [{ react: { requiredVersion: '^18.1.0' } }, 'react-dom/client'],
+      }),
       new HtmlWebpackPlugin({
         template: './public/index.html',
       }),

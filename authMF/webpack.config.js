@@ -32,7 +32,7 @@ module.exports = (env) => {
         shared: [{ react: { requiredVersion: '^18.1.0' } }, 'react-dom/client'],
       }),
       new HtmlWebpackPlugin({
-        template: './dist/index.html',
+        template: './public/index.html',
       }),
       new Dotenv({ path: `./.env` }),
     ],
