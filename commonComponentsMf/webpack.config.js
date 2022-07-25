@@ -40,7 +40,7 @@ module.exports = {
       ],
     }),
     new HtmlWebpackPlugin({
-      template: './dist/index.html',
+      template: './public/index.html',
     }),
   ],
   output: {

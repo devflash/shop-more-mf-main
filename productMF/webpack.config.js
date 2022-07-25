@@ -4,12 +4,11 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const Dotenv = require('dotenv-webpack');
 
 module.exports = (env) => {
-  console.log(env.development);
   return {
     entry: './src/index.js',
     mode: 'development',
     devServer: {
-      port: 8081,
+      port: 8085,
       static: {
         directory: path.join(__dirname, 'dist'),
       },
@@ -25,7 +24,7 @@ module.exports = (env) => {
     },
     plugins: [
       new ModuleFederationPlugin({
-        name: 'authMf',
+        name: 'productMf',
         remotes: {
           commonComponentMf: `commonComponentMf@//localhost:8082/remoteEntry.js`,
         },
