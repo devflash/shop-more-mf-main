@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import Layout from 'commonComponentMf/Layout';
-import SignUpComp from '../../components/signup';
+import SignupComp from '../../components/signupComp';
 const layoutStyle = css`
   min-height: calc(100vh - 62px);
   padding-top: 30px;
@@ -9,9 +9,9 @@ const layoutStyle = css`
   height: auto;
 `;
 
-const SignUp = () => (
+const SignUp = ({ navigateRoute }) => (
   <Layout customCss={layoutStyle}>
-    <SignUpComp />
+    <SignupComp navigateRoute={navigateRoute} />
   </Layout>
 );
 

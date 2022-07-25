@@ -1,16 +1,14 @@
 import React, { useReducer } from 'react';
 import { css } from '@emotion/react';
 import Input from 'commonComponentMf/Input';
+// import { useAuth } from '../../context';
 import Button from 'commonComponentMf/Button';
+import { getErrorMessage } from '../../utils/handleError';
 import Toast from 'commonComponentMf/Toast';
 import Loader from 'commonComponentMf/Loader';
-import config from '../../config';
 import useLoader from '../../hooks/useLoader';
+import config from '../../config';
 import axios from 'axios';
-import { getErrorMessage } from '../../utils/handleError';
-
-// import { useAuth } from '../../context';
-// import { useRouter } from 'next/router';
 
 const flex = css`
   display: flex;
@@ -35,21 +33,10 @@ const container = css``;
 
 const row = css`
   margin-bottom: 20px;
-  width: 100%;
 `;
 
 const note = css`
   font-size: 0.7rem;
-`;
-
-const createBtn = css`
-  border: none;
-  background-color: #ffd814;
-  border-color: #fcd200;
-  border-radius: 10px;
-  padding: 12px 20px;
-  cursor: pointer;
-  margin: 0 auto;
 `;
 
 const alignCenter = css`
@@ -66,78 +53,98 @@ const errorCss = css`
 `;
 
 const initialState = {
+  firstName: '',
+  lastName: '',
   email: '',
   password: '',
-  emailError: '',
-  passwordError: '',
-  serviceError: '',
+  firstNameError: null,
+  lastNameError: null,
+  emailError: null,
+  passwordError: null,
+  serviceError: null,
+  success: null,
 };
 
-const SignIn = ({ navigateRoute }) => {
+const SignUp = ({ navigateRoute }) => {
   const [state, dispatch] = useReducer((state, newState) => {
     return { ...state, ...newState };
   }, initialState);
-  //   const { signInUser } = useAuth();
   const [{ isLoading, isBackdrop }, setLoading] = useLoader({});
   const { API_SERVER } = config;
-
+  const onFirstNameChanged = (firstName) => {
+    dispatch({ firstName, firstNameError: null });
+  };
+  const onLastNameChanged = (lastName) => {
+    dispatch({ lastName, lastNameError: null });
+  };
   const onEmailChanged = (email) => {
     dispatch({ email, emailError: null });
   };
   const onPasswordChanged = (password) => {
     dispatch({ password, passwordError: null });
   };
-
   const validateInput = () => {
     let isValid = true;
+    if (!state.firstName) {
+      dispatch({ firstNameError: 'Please Enter your first name' });
+      isValid = false;
+    }
+    if (!state.lastName) {
+      dispatch({ lastNameError: 'Please Enter your last name' });
+      isValid = false;
+    }
     if (!state.email) {
-      dispatch({ emailError: 'Please Enter your email address' });
+      dispatch({ emailError: 'Please Enter your first name' });
       isValid = false;
     }
     if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(state.email)) {
       dispatch({ emailError: 'Please Enter a valid email address' });
       isValid = false;
     }
-    if (!state.password) {
-      dispatch({ passwordError: 'Please enter password' });
+    if (state.password.length < 8) {
+      dispatch({ passwordError: true });
       isValid = false;
     }
     return isValid;
   };
-
-  const handleUserLogin = async (e) => {
-    e.preventDefault();
+  const handleCreateAccount = async (event) => {
+    event.preventDefault();
     if (validateInput()) {
       setLoading({ isLoading: true, isBackdrop: true });
 
       try {
-        // await signInUser(state.email, state.password);
-        // router.push('/');
         const payload = {
           email: state.email,
           password: state.password,
+          firstName: state.firstName,
+          lastName: state.lastName,
         };
-        const { data } = await axios.post(`${API_SERVER}/api/signIn`, payload);
-        if (data.msg === 'SIGNED_IN_SUCCESS') {
+        const { data } = await axios.post(`${API_SERVER}/api/signUp`, payload);
+        if (data.msg === 'ACCOUNT_CREATED') {
           // setAuthUser(data.authUser);
-          // navigateRoute('/')
-          console.log('User Logged in');
+          dispatch({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            success: 'Your account has been created successfuly',
+          });
+          navigateRoute('/');
         }
       } catch (e) {
-        const serviceError = getErrorMessage(e);
-        dispatch({ serviceError });
+        const errorMessage = getErrorMessage(e);
+        dispatch({ serviceError: errorMessage });
       }
     }
     setLoading({ isLoading: false, isBackdrop: false });
   };
-
   return (
     <div css={flex}>
       <Toast
-        open={state.serviceError}
-        text={state.serviceError}
-        callback={() => dispatch({ serviceError: '' })}
-        isError={true}
+        open={state.serviceError || state.success}
+        text={state.serviceError || state.success}
+        callback={() => dispatch({ serviceError: '', success: '' })}
+        isError={state.serviceError ? true : false}
       />
       <Loader isLoading={isLoading} isBackdrop={isBackdrop} />
 
@@ -145,6 +152,26 @@ const SignIn = ({ navigateRoute }) => {
         <h1>ShopMore</h1>
         <div css={container}>
           <form>
+            <div css={row}>
+              <Input
+                id="firstName"
+                labelTitle="First name"
+                value={state.firstName}
+                onValueChange={(e) => onFirstNameChanged(e.target.value)}
+                customCss={inputCSS(state.firstNameError)}
+              />
+              <span css={errorCss}>{state.firstNameError}</span>
+            </div>
+            <div css={row}>
+              <Input
+                id="lastName"
+                labelTitle="Last name"
+                value={state.lastName}
+                onValueChange={(e) => onLastNameChanged(e.target.value)}
+                customCss={inputCSS(state.lastNameError)}
+              />
+              <span css={errorCss}>{state.lastNameError}</span>
+            </div>
             <div css={row}>
               <Input
                 id="email"
@@ -165,15 +192,15 @@ const SignIn = ({ navigateRoute }) => {
                 onValueChange={(e) => onPasswordChanged(e.target.value)}
                 customCss={inputCSS(state.passwordError)}
               />
-              <span css={errorCss}>{state.passwordError}</span>
+              <span css={[note, state.passwordError && errorCss]}>
+                Password must be atleast 8 characters
+              </span>
             </div>
             <div css={alignCenter}>
               <Button
-                label="Login"
-                customCss={createBtn}
-                onClick={(e) => handleUserLogin(e)}
+                onClick={(e) => handleCreateAccount(e)}
+                label=" Create account"
               ></Button>
-              <button onClick={() => navigate('/signUp')}>Change</button>
             </div>
           </form>
         </div>
@@ -182,4 +209,4 @@ const SignIn = ({ navigateRoute }) => {
   );
 };
 
-export default SignIn;
+export default SignUp;

@@ -7,9 +7,9 @@ const layoutStyle = css`
   background-color: #fff;
 `;
 
-const Product = () => (
+const Product = ({ navigateRoute }) => (
   <Layout layoutStyle={layoutStyle}>
-    <ProductComp />
+    <ProductComp navigateRoute={navigateRoute} />
   </Layout>
 );
 

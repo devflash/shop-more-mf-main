@@ -8,7 +8,7 @@ module.exports = (env) => {
     entry: './src/index.js',
     mode: 'development',
     devServer: {
-      port: 8085,
+      port: 8080,
       static: {
         directory: path.join(__dirname, 'dist'),
       },
@@ -24,14 +24,11 @@ module.exports = (env) => {
     },
     plugins: [
       new ModuleFederationPlugin({
-        name: 'productMf',
-        filename: 'remoteEntry.js',
+        name: 'containerMf',
         remotes: {
           commonComponentMf: `commonComponentMf@//localhost:8082/remoteEntry.js`,
-        },
-        exposes: {
-          './Products': './src/pages/products',
-          './Product': './src/pages/product',
+          productMf: `productMf@//localhost:8085/remoteEntry.js`,
+          authMf: `authMf@//localhost:8081/remoteEntry.js`,
         },
         shared: [{ react: { requiredVersion: '^18.1.0' } }, 'react-dom/client'],
       }),
