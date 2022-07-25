@@ -26,8 +26,13 @@ module.exports = (env) => {
     plugins: [
       new ModuleFederationPlugin({
         name: 'authMf',
+        filename: 'remoteEntry.js',
         remotes: {
           commonComponentMf: `commonComponentMf@//localhost:8082/remoteEntry.js`,
+        },
+        exposes: {
+          './SignUpPage': './src/pages/signUp',
+          './SignInPage': './src/pages/signIn',
         },
         shared: [{ react: { requiredVersion: '^18.1.0' } }, 'react-dom/client'],
       }),

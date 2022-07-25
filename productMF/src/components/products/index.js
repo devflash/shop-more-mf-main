@@ -71,7 +71,7 @@ const productImg = css`
 const initialState = {
   products: [],
 };
-const Products = () => {
+const Products = ({ navigateRoute }) => {
   const [state, dispatch] = useReducer((state, newState) => {
     return { ...state, ...newState };
   }, initialState);
@@ -98,7 +98,11 @@ const Products = () => {
 
       <div css={wrapper}>
         {state.products.map((cur) => (
-          <button key={cur.id} css={productLink}>
+          <button
+            onClick={() => navigateRoute(`/product/${cur.productId}`)}
+            key={cur.id}
+            css={productLink}
+          >
             <div css={card}>
               <div css={imageWrapper}>
                 <img src={cur.image} alt={cur.title} css={productImg} />

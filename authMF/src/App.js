@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import SignIn from './pages/signIn';
-import SignUp from './pages/signup';
+import Signup from './pages/signUp';
 import Navigation from './components/navigation';
 
 import {
@@ -20,7 +20,7 @@ const App = () => (
     <BrowserRouter>
       <Navigation />
       <Routes>
-        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
         <Route path="/signIn" element={<SignIn />}></Route>
         <Route path="/" element={<SignIn />}></Route>
       </Routes>

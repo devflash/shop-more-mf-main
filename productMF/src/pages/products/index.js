@@ -2,9 +2,9 @@ import React from 'react';
 import ProductsComp from '../../components/products';
 import Layout from 'commonComponentMf/Layout';
 
-const Products = () => (
+const Products = ({ navigateRoute }) => (
   <Layout>
-    <ProductsComp />
+    <ProductsComp navigateRoute={navigateRoute} />
   </Layout>
 );
 

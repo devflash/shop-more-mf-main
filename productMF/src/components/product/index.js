@@ -115,7 +115,7 @@ const initialState = {
   serviceError: null,
   success: null,
 };
-const Product = ({ productId = '0WC46FebJ8ppvjDbmPqg' }) => {
+const Product = ({ navigateRoute, productId = '0WC46FebJ8ppvjDbmPqg' }) => {
   //   const { authUser } = useAuth();
   const [{ isLoading, isBackdrop }, setLoading] = useLoader({});
   const { API_SERVER } = config;

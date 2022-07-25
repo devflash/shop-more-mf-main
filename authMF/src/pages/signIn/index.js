@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import SignInComp from '../../components/signin';
+import SigninComp from '../../components/signinComp';
 import Layout from 'commonComponentMf/Layout';
 
 const layoutStyle = css`
@@ -10,9 +10,9 @@ const layoutStyle = css`
   height: auto;
 `;
 
-const SignIn = () => (
+const SignIn = ({ navigateRoute }) => (
   <Layout layoutStyle={layoutStyle}>
-    <SignInComp />
+    <SigninComp navigateRoute={navigateRoute} />
   </Layout>
 );
 
