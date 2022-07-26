@@ -3,7 +3,8 @@ import { css } from '@emotion/react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { ImCross } from 'react-icons/im';
 import { Link } from 'react-router-dom';
-// import { useAuth } from '../../context';
+import { useAuthContext } from '@devflash/shared-shopmore-lib';
+// import { useAuthContext } from '../../App';
 import Button from 'commonComponentMf/Button';
 // import { useRouter } from 'next/router';
 const header = css`
@@ -107,8 +108,8 @@ const btnCss = css`
 
 const Header = () => {
   const [show, setShow] = useState(false);
-  // const { authUser, signOutUser } = useAuth();
-  const authUser = null;
+  const { authUser, updateAuth } = useAuthContext();
+
   // const router = useRouter();
   const handleSignOut = () => {
     signOutUser().then(() => router.push('/signin'));

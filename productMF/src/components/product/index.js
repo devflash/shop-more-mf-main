@@ -7,6 +7,7 @@ import { getErrorMessage } from '../../utils/handleError';
 import Loader from 'commonComponentMf/Loader';
 import useLoader from '../../hooks/useLoader';
 import Currency from 'commonComponentMf/Currency';
+import { useAuthContext } from '@devflash/shared-shopmore-lib';
 
 const wrapper = css`
   padding-top: 50px;
@@ -116,7 +117,7 @@ const initialState = {
   success: null,
 };
 const Product = ({ navigateRoute, productId = '0WC46FebJ8ppvjDbmPqg' }) => {
-  //   const { authUser } = useAuth();
+  const { authUser } = useAuthContext();
   const [{ isLoading, isBackdrop }, setLoading] = useLoader({});
   const { API_SERVER } = config;
   const [state, dispatch] = useReducer((state, newState) => {
@@ -132,7 +133,6 @@ const Product = ({ navigateRoute, productId = '0WC46FebJ8ppvjDbmPqg' }) => {
         `${API_SERVER}/api/product/${productId}`
       );
       dispatch({ product: data });
-      console.log(data);
     };
     fetchData();
   }, [productId]);
@@ -146,7 +146,7 @@ const Product = ({ navigateRoute, productId = '0WC46FebJ8ppvjDbmPqg' }) => {
           userId: authUser.uid,
         };
         const { data } = await axios.post(
-          `${server}/api/wishlist/add`,
+          `${API_SERVER}/api/wishlist/add`,
           payload
         );
         const { msg } = data;
@@ -160,7 +160,7 @@ const Product = ({ navigateRoute, productId = '0WC46FebJ8ppvjDbmPqg' }) => {
         dispatch({ serviceError });
       }
     } else {
-      // router.push('/signin');
+      navigateRoute('/signin');
     }
     setLoading({ isLoading: false, isBackdrop: false });
   };
@@ -173,18 +173,22 @@ const Product = ({ navigateRoute, productId = '0WC46FebJ8ppvjDbmPqg' }) => {
           ...state.product,
           userId: authUser.uid,
         };
-        const { data } = await axios.post(`${server}/api/cart/add`, payload);
+        const { data } = await axios.post(
+          `${API_SERVER}/api/cart/add`,
+          payload
+        );
         const { msg } = data;
         if (msg === 'PRODUCT_ADDED_CART') {
           dispatch({ success: 'Product has been added to your cart' });
         }
       } catch (e) {
+        console.log(e);
         const error_code = e?.response?.data;
         const serviceError = getErrorMessage(error_code);
         dispatch({ serviceError });
       }
     } else {
-      // router.push('/signin');
+      navigateRoute('/signin');
     }
     setLoading({ isLoading: false, isBackdrop: false });
   };

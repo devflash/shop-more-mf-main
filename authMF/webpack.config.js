@@ -34,7 +34,16 @@ module.exports = (env) => {
           './SignUpPage': './src/pages/signUp',
           './SignInPage': './src/pages/signIn',
         },
-        shared: [{ react: { requiredVersion: '^18.1.0' } }, 'react-dom/client'],
+        shared: [
+          { react: { requiredVersion: '^18.1.0' } },
+          'react-dom/client',
+          {
+            '@devflash/shared-shopmore-lib': {
+              import: '@devflash/shared-shopmore-lib',
+              requiredVersion: '2.0.5',
+            },
+          },
+        ],
       }),
       new HtmlWebpackPlugin({
         template: './public/index.html',
