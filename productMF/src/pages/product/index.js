@@ -7,10 +7,13 @@ const layoutStyle = css`
   background-color: #fff;
 `;
 
-const Product = ({ navigateRoute }) => (
-  <Layout layoutStyle={layoutStyle}>
-    <ProductComp navigateRoute={navigateRoute} />
-  </Layout>
-);
+const Product = ({ navigateRoute, getParams }) => {
+  const { productId } = getParams();
+  return (
+    <Layout layoutStyle={layoutStyle}>
+      <ProductComp navigateRoute={navigateRoute} productId={productId} />
+    </Layout>
+  );
+};
 
 export default Product;

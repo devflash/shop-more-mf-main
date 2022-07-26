@@ -4,11 +4,12 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const Dotenv = require('dotenv-webpack');
 
 module.exports = (env) => {
+  console.log(env.development);
   return {
     entry: './src/index.js',
     mode: 'development',
     devServer: {
-      port: 8080,
+      port: 8086,
       static: {
         directory: path.join(__dirname, 'dist'),
       },
@@ -24,12 +25,13 @@ module.exports = (env) => {
     },
     plugins: [
       new ModuleFederationPlugin({
-        name: 'containerMf',
+        name: 'ordersMf',
+        filename: 'remoteEntry.js',
         remotes: {
           commonComponentMf: `commonComponentMf@//localhost:8082/remoteEntry.js`,
-          productMf: `productMf@//localhost:8085/remoteEntry.js`,
-          authMf: `authMf@//localhost:8081/remoteEntry.js`,
-          ordersMf: `ordersMf@//localhost:8086/remoteEntry.js`,
+        },
+        exposes: {
+          './OrdersPage': './src/pages/orders',
         },
         shared: [
           { react: { requiredVersion: '^18.1.0' } },
