@@ -10,10 +10,13 @@ const layoutStyle = css`
   height: auto;
 `;
 
-const Orders = () => (
-  <Layout layoutStyle={layoutStyle}>
-    <OrdersComp />
-  </Layout>
-);
+const Orders = ({ navigateRoute, getParams }) => {
+  const { userId } = getParams();
+  return (
+    <Layout layoutStyle={layoutStyle}>
+      <OrdersComp userId={userId} navigateRoute={navigateRoute} />
+    </Layout>
+  );
+};
 
 export default Orders;

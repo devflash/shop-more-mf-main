@@ -174,7 +174,6 @@ const SignIn = ({ navigateRoute }) => {
                 customCss={createBtn}
                 onClick={(e) => handleUserLogin(e)}
               ></Button>
-              <button onClick={() => navigate('/signUp')}>Change</button>
             </div>
           </form>
         </div>
