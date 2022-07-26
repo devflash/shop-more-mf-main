@@ -33,7 +33,16 @@ module.exports = (env) => {
           './Products': './src/pages/products',
           './Product': './src/pages/product',
         },
-        shared: [{ react: { requiredVersion: '^18.1.0' } }, 'react-dom/client'],
+        shared: [
+          { react: { requiredVersion: '^18.1.0' } },
+          'react-dom/client',
+          {
+            '@devflash/shared-shopmore-lib': {
+              import: '@devflash/shared-shopmore-lib',
+              requiredVersion: '2.0.5',
+            },
+          },
+        ],
       }),
       new HtmlWebpackPlugin({
         template: './public/index.html',

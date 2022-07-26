@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer, useContext } from 'react';
 import { css } from '@emotion/react';
 import Input from 'commonComponentMf/Input';
 import Button from 'commonComponentMf/Button';
@@ -8,6 +8,7 @@ import config from '../../config';
 import useLoader from '../../hooks/useLoader';
 import axios from 'axios';
 import { getErrorMessage } from '../../utils/handleError';
+import { useAuthContext } from '@devflash/shared-shopmore-lib';
 
 // import { useAuth } from '../../context';
 // import { useRouter } from 'next/router';
@@ -77,7 +78,7 @@ const SignIn = ({ navigateRoute }) => {
   const [state, dispatch] = useReducer((state, newState) => {
     return { ...state, ...newState };
   }, initialState);
-  //   const { signInUser } = useAuth();
+  const { updateAuth } = useAuthContext();
   const [{ isLoading, isBackdrop }, setLoading] = useLoader({});
   const { API_SERVER } = config;
 
@@ -118,8 +119,9 @@ const SignIn = ({ navigateRoute }) => {
           password: state.password,
         };
         const { data } = await axios.post(`${API_SERVER}/api/signIn`, payload);
+        // const data = { msg: 'SIGNED_IN_SUCCESS' };
         if (data.msg === 'SIGNED_IN_SUCCESS') {
-          // setAuthUser(data.authUser);
+          updateAuth(data.authUser);
           navigateRoute('/');
         }
       } catch (e) {

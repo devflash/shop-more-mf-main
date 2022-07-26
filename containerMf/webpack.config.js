@@ -30,7 +30,16 @@ module.exports = (env) => {
           productMf: `productMf@//localhost:8085/remoteEntry.js`,
           authMf: `authMf@//localhost:8081/remoteEntry.js`,
         },
-        shared: [{ react: { requiredVersion: '^18.1.0' } }, 'react-dom/client'],
+        shared: [
+          { react: { requiredVersion: '^18.1.0' } },
+          'react-dom/client',
+          {
+            '@devflash/shared-shopmore-lib': {
+              import: '@devflash/shared-shopmore-lib',
+              requiredVersion: '2.0.5',
+            },
+          },
+        ],
       }),
       new HtmlWebpackPlugin({
         template: './public/index.html',
