@@ -4,11 +4,16 @@ import Header from './components/header';
 
 import { BrowserRouter } from 'react-router-dom';
 import { Global, css } from '@emotion/react';
-import { authContext, useAuth } from '@devflash/shared-shopmore-lib';
+import {
+  authContext,
+  useAuth,
+  orderContext,
+  useOrders,
+} from '@devflash/shared-shopmore-lib';
 
 const App = () => {
   const auth = useAuth();
-
+  const orders = useOrders();
   return (
     <>
       <Global
@@ -24,10 +29,12 @@ const App = () => {
         `}
       />
       <authContext.Provider value={auth}>
-        <BrowserRouter>
-          <Header />
-          <Container />
-        </BrowserRouter>
+        <orderContext.Provider value={orders}>
+          <BrowserRouter>
+            <Header />
+            <Container />
+          </BrowserRouter>
+        </orderContext.Provider>
       </authContext.Provider>
     </>
   );

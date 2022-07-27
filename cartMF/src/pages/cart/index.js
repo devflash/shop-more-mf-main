@@ -4,8 +4,10 @@ import CartComp from '../../components/cartComp';
 import Layout from 'commonComponentMf/Layout';
 
 const customLayout = css`
-  height: calc(100vh - 78px);
-  padding: 10px;
+  min-height: calc(100vh - 78px);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  height: auto;
 `;
 
 const Cart = ({

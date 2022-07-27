@@ -30,6 +30,7 @@ module.exports = (env) => {
           productMf: `productMf@//localhost:8085/remoteEntry.js`,
           authMf: `authMf@//localhost:8081/remoteEntry.js`,
           ordersMf: `ordersMf@//localhost:8086/remoteEntry.js`,
+          cartMf: `cartMf@//localhost:8084/remoteEntry.js`,
         },
         shared: [
           { react: { requiredVersion: '^18.1.0' } },
