@@ -37,7 +37,7 @@ module.exports = (env) => {
           {
             '@devflash/shared-shopmore-lib': {
               import: '@devflash/shared-shopmore-lib',
-              requiredVersion: '2.0.5',
+              requiredVersion: '3.0.1',
             },
           },
         ],
