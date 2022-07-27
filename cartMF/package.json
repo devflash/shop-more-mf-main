@@ -1,5 +1,5 @@
 {
-  "name": "@shop-more-mf-main/containermf",
+  "name": "@shop-more-mf-main/cartmf",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -27,6 +27,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
-    "react-router-dom": "^6.3.0"
+    "react-payment-inputs": "^1.1.9",
+    "react-router-dom": "^6.3.0",
+    "styled-components": "^5.3.5"
   }
 }
