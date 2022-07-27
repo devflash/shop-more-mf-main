@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import ProductComp from '../../components/product';
 import Layout from 'commonComponentMf/Layout';
-
+import { useParams } from 'react-router-dom';
 const layoutStyle = css`
   background-color: #fff;
 `;

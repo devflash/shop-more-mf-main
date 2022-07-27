@@ -5,16 +5,23 @@ import Payment from './pages/payment';
 import Address from './pages/address';
 import Preview from './pages/preview';
 import Navigation from './components/navigation';
-const App = () => (
-  <BrowserRouter>
-    <Navigation />
-    <Routes>
-      <Route path="/payment" element={<Payment />}></Route>
-      <Route path="/preview" element={<Preview />}></Route>
-      <Route path="/address" element={<Address />}></Route>
-      <Route path="/" element={<Cart />}></Route>
-    </Routes>
-  </BrowserRouter>
-);
+import { orderContext, useOrders } from '@devflash/shared-shopmore-lib';
+
+const App = () => {
+  const orders = useOrders();
+  return (
+    <orderContext.Provider value={orders}>
+      <BrowserRouter>
+        <Navigation />
+        <Routes>
+          <Route path="/payment" element={<Payment />}></Route>
+          <Route path="/preview" element={<Preview />}></Route>
+          <Route path="/address/:userId" element={<Address />}></Route>
+          <Route path="/" element={<Cart />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </orderContext.Provider>
+  );
+};
 
 export default App;
