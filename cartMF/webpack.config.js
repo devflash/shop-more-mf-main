@@ -30,6 +30,12 @@ module.exports = (env) => {
         remotes: {
           commonComponentMf: `commonComponentMf@//localhost:8082/remoteEntry.js`,
         },
+        exposes: {
+          './CartPage': './src/pages/cart',
+          './AddressPage': './src/pages/address',
+          './PreviewPage': './src/pages/preview',
+          './PaymentPage': './src/pages/payment',
+        },
         shared: [
           { react: { requiredVersion: '^18.1.0' } },
           'react-dom/client',
