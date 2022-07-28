@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
-// const ModuleFederationPlugin =
-//   require('webpack').container.ModuleFederationPlugin;
+const ModuleFederationPlugin =
+  require('webpack').container.ModuleFederationPlugin;
 const Dotenv = require('dotenv-webpack');
 
 const path = require('path');
@@ -42,14 +42,26 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    // new ModuleFederationPlugin({
-    //   name: 'app3',
-    //   filename: 'remoteEntry.js',
-    //   exposes: {
-    //     './App3': './src/App.vue',
-    //   },
-    //   shared: ['vue'],
-    // }),
+    new ModuleFederationPlugin({
+      name: 'wishlistMf',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './WishlistPage': './src/pages/wishlistReact',
+      },
+      remotes: {
+        commonComponentMf: `commonComponentMf@//localhost:8082/remoteEntry.js`,
+      },
+      shared: [
+        { react: { requiredVersion: '^18.1.0' } },
+        'react-dom/client',
+        {
+          '@devflash/shared-shopmore-lib': {
+            import: '@devflash/shared-shopmore-lib',
+            requiredVersion: '3.0.1',
+          },
+        },
+      ],
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
