@@ -26,8 +26,8 @@ export default {
       name: 'Mrugesh',
       wishlist: [],
       serviceError: null,
-      isLoading: false,
-      isBackdrop: false,
+      isLoading: null,
+      isBackdrop: null,
       success: null,
     };
   },
@@ -79,7 +79,7 @@ export default {
         const { msg } = data;
         if (msg === 'PRODUCT_REMOVED') {
           //show success toast;
-          const userWishlist = state.wishlist.filter((cur) => cur.id !== id);
+          const userWishlist = this.wishlist.filter((cur) => cur.id !== id);
 
           this.wishlist = userWishlist.slice();
           this.success = 'Product has been removed from your wishlist';
@@ -91,8 +91,6 @@ export default {
       this.setLoader({ isLoading: false, isBackdrop: false });
     },
     async fetchData() {
-      this.setLoader({ isLoading: true, isBackdrop: false });
-
       try {
         const { data } = await axios.get(
           `${API_SERVER}/api/wishlist/${this.userId}`
@@ -110,8 +108,11 @@ export default {
     },
   },
   mounted() {
+    this.setLoader({ isLoading: true, isBackdrop: false });
+
     console.log(API_SERVER);
     this.fetchData();
+    console.log('Fetching...');
   },
 };
 </script>

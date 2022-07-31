@@ -8,6 +8,7 @@ import CartPage from 'cartMf/CartPage';
 import AddressPage from 'cartMf/AddressPage';
 import PreviewPage from 'cartMf/PreviewPage';
 import PaymentPage from 'cartMf/PaymentPage';
+import WishlistPage from 'wishlistMf/WishlistPage';
 
 import { Routes, Route, useNavigate, useParams } from 'react-router-dom';
 
@@ -61,6 +62,12 @@ const Container = () => {
       <Route
         path="/payment"
         element={<PaymentPage navigateRoute={navigateRoute} />}
+      ></Route>
+      <Route
+        path="/wishlist/:userId"
+        element={
+          <WishlistPage navigateRoute={navigateRoute} getParams={getParams} />
+        }
       ></Route>
       <Route
         path="/"
