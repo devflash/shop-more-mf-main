@@ -4,9 +4,22 @@
   "description": "A micro frontend implementation of shopmore monolith application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "turbo run start --parallel && echo \"start completed\""
   },
   "author": "Mrugesh",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "turbo": "^1.4.0"
+  },
+  "workspaces": [
+    "authMF",
+    "cartMF",
+    "commonComponentsMf",
+    "containerMf",
+    "ordersMF",
+    "productMF",
+    "wishlistMF"
+  ]
 }
