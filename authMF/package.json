@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve --env development"
+    "start": "webpack serve --env development --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
   },
   "author": "Mrugesh",
   "license": "ISC",
@@ -26,6 +27,7 @@
     "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "webpack-merge": "^5.8.0"
   }
 }

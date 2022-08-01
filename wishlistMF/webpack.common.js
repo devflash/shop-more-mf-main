@@ -1,24 +1,11 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const ModuleFederationPlugin =
   require('webpack').container.ModuleFederationPlugin;
-const Dotenv = require('dotenv-webpack');
-
 const path = require('path');
 
 module.exports = {
   entry: './src/index',
-  mode: 'development',
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
-    },
-    port: 8083,
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-  },
+
   module: {
     rules: [
       {
@@ -62,11 +49,9 @@ module.exports = {
         },
       ],
     }),
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
-    new Dotenv({
-      path: './.env',
-    }),
   ],
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+  },
 };

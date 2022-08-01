@@ -1,16 +1,8 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
 
 module.exports = {
   entry: './src/index.js',
-  mode: 'development',
-  devServer: {
-    port: 8082,
-    static: {
-      directory: path.join(__dirname, 'dist'),
-    },
-  },
   module: {
     rules: [
       {
@@ -38,9 +30,6 @@ module.exports = {
         'react-dom/client',
         'react-icons',
       ],
-    }),
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
     }),
   ],
   output: {
