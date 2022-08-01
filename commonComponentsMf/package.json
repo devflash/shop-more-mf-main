@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve"
+    "start": "webpack serve --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
   },
   "author": "Mrugesh",
   "license": "ISC",
@@ -16,7 +17,8 @@
     "html-webpack-plugin": "^5.5.0",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.9.3"
+    "webpack-dev-server": "^4.9.3",
+    "webpack-merge": "^5.8.0"
   },
   "dependencies": {
     "@emotion/babel-preset-css-prop": "^11.2.0",
