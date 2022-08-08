@@ -1,4 +1,3 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const path = require('path');
@@ -12,9 +11,8 @@ module.exports = merge(common, {
       directory: path.join(__dirname, 'dist'),
     },
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
-  ],
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+  },
 });
