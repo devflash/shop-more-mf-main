@@ -75,7 +75,7 @@ const Products = ({ navigateRoute }) => {
   const [state, dispatch] = useReducer((state, newState) => {
     return { ...state, ...newState };
   }, initialState);
-
+  console.log('products');
   const [{ isLoading, isBackdrop }, setLoading] = useLoader({});
   const { API_SERVER } = config;
 
