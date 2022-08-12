@@ -81,7 +81,7 @@ const SignIn = ({ navigateRoute }) => {
   const { updateAuth } = useAuthContext();
   const [{ isLoading, isBackdrop }, setLoading] = useLoader({});
   const { API_SERVER } = config;
-
+  console.log('auth');
   const onEmailChanged = (email) => {
     dispatch({ email, emailError: null });
   };
