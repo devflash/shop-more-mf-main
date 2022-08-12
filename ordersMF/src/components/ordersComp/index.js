@@ -132,7 +132,7 @@ const initialState = {
 const Orders = ({ userId, navigateRoute }) => {
   const { authUser } = useAuthContext();
   const { API_SERVER } = config;
-
+  console.log('orders');
   const [state, dispatch] = useReducer((state, newState) => {
     return {
       ...state,
