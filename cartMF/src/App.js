@@ -9,6 +9,7 @@ import { orderContext, useOrders } from '@devflash/shared-shopmore-lib';
 
 const App = () => {
   const orders = useOrders();
+  console.log('cart');
   return (
     <orderContext.Provider value={orders}>
       <BrowserRouter>
