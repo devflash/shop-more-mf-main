@@ -3,8 +3,8 @@ name: container-deployment
 on:
   push:
     branches: ['github-action']
-  paths:
-    - 'containerMf/**'
+    paths:
+      - 'containerMf/**'
 
 defaults:
   run:
