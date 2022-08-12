@@ -1,0 +1,19 @@
+name: container-deployment
+
+on:
+  push:
+    branches: ['github-action']
+  paths:
+    - 'containerMf/**'
+
+defaults:
+  run:
+    working-directory: containerMf
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm run build
