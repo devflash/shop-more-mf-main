@@ -1,10 +1,10 @@
-name: container-deployment
+name: cart-deployment
 
 on:
   push:
     branches: ['github-action']
     paths:
-      - 'containerMf/**'
+      - 'cartMF/**'
 
 jobs:
   build:
@@ -14,3 +14,4 @@ jobs:
       - run: npm install
       - run: npm run
       - run: npm run buildContainer
+      - run: npm run buildCart
