@@ -106,6 +106,7 @@ const btnCss = css`
   padding: 10px;
 `;
 
+console.log('hhello');
 const Header = () => {
   const [show, setShow] = useState(false);
   const { authUser, updateAuth } = useAuthContext();
