@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "turbo run start --parallel && echo \"start completed\""
+    "start": "turbo run start --parallel && echo \"start completed\"",
+    "buildContainer": "turbo run build --filter=@shop-more-mf-main/containermf",
+    "buildAuthMf": "turbo run build --filter=@shop-more-mf-main/authmf"
   },
   "author": "Mrugesh",
   "license": "ISC",
