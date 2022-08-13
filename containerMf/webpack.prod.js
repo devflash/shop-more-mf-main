@@ -2,9 +2,9 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const Dotenv = require('dotenv-webpack');
 const path = require('path');
-const domain = process.env.PROD_DOMAIN;
 const { ModuleFederationPlugin } = require('webpack').container;
 
+const domain = process.env.PROD_DOMAIN;
 module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
@@ -12,7 +12,7 @@ module.exports = merge(common, {
     new ModuleFederationPlugin({
       name: 'containerMf',
       remotes: {
-        commonComponentMf: `commonComponentMf@${domain}commonComponentMf/remoteEntry.js`,
+        commonComponentMf: `commonComponentMf@${domain}/commonComponentMf/remoteEntry.js`,
         productMf: `productMf@${domain}/productMf/remoteEntry.js`,
         authMf: `authMf@${domain}/authMf/remoteEntry.js`,
         ordersMf: `ordersMf@${domain}/ordersMf/remoteEntry.js`,
