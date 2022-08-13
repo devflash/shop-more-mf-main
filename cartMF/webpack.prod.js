@@ -13,7 +13,7 @@ module.exports = merge(common, {
       name: 'cartMf',
       filename: 'remoteEntry.js',
       remotes: {
-        commonComponentMf: `commonComponentMf@${domain}/commonComponentMf/remoteEntry.js`,
+        commonComponentMf: `commonComponentMf@/commonComponentsmf/latest/remoteEntry.js`,
       },
       exposes: {
         './CartPage': './src/pages/cart',

@@ -17,7 +17,7 @@ module.exports = merge(common, {
         './WishlistPage': './src/pages/wishlistReact',
       },
       remotes: {
-        commonComponentMf: `commonComponentMf@${domain}/remoteEntry.js`,
+        commonComponentMf: `commonComponentMf@/commonComponentsmf/latest/remoteEntry.js`,
       },
       shared: [
         { react: { requiredVersion: '^18.1.0' } },

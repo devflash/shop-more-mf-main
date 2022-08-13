@@ -14,7 +14,7 @@ module.exports = merge(common, {
       name: 'authMf',
       filename: 'remoteEntry.js',
       remotes: {
-        commonComponentMf: `commonComponentMf@${domain}/commonComponentMf/remoteEntry.js`,
+        commonComponentMf: `commonComponentMf@/commonComponentsmf/latest/remoteEntry.js`,
       },
       exposes: {
         './SignInPage': './src/pages/signIn',

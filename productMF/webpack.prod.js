@@ -14,7 +14,7 @@ module.exports = merge(common, {
       name: 'productMf',
       filename: 'remoteEntry.js',
       remotes: {
-        commonComponentMf: `commonComponentMf@${domain}/commonComponentMf/remoteEntry.js`,
+        commonComponentMf: `commonComponentMf@${domain}/commonComponentsmf/latest/remoteEntry.js`,
       },
       exposes: {
         './Products': './src/pages/products',
