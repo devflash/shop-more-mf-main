@@ -17,7 +17,6 @@ module.exports = merge(common, {
         commonComponentMf: `commonComponentMf@${domain}/commonComponentMf/remoteEntry.js`,
       },
       exposes: {
-        './SignUpPage': './src/pages/signUp',
         './SignInPage': './src/pages/signIn',
       },
       shared: [
