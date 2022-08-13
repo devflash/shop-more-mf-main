@@ -129,7 +129,9 @@ const Product = ({ navigateRoute, productId = '0WC46FebJ8ppvjDbmPqg' }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get(`/api/product/${productId}`);
+      const { data } = await axios.get(
+        `${API_SERVER}/api/product/${productId}`
+      );
       dispatch({ product: data });
     };
     fetchData();
