@@ -130,7 +130,7 @@ const Product = ({ navigateRoute, productId = '0WC46FebJ8ppvjDbmPqg' }) => {
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axios.get(
-        `${API_SERVER}/api/product/${productId}`
+        `https://sk7fvgq38b.execute-api.eu-west-1.amazonaws.com/dev/api/product/${productId}`
       );
       dispatch({ product: data });
     };

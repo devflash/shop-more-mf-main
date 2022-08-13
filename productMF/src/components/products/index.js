@@ -82,7 +82,9 @@ const Products = ({ navigateRoute }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(`${API_SERVER}/api/products`);
+        const { data } = await axios.get(
+          `https://sk7fvgq38b.execute-api.eu-west-1.amazonaws.com/dev/api/products`
+        );
         console.log(data);
         if (data) {
           dispatch({ products: data });
