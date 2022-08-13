@@ -6,6 +6,9 @@ on:
     paths:
       - 'containerMf/**'
 
+env:
+  API_SERVER: ${{ secrets.API_SERVER }}
+
 defaults:
   run:
     working-directory: containerMf
