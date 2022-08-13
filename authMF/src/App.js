@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import SignIn from './pages/signIn';
-import SignUp from './pages/signUp';
+import SignUp from './pages/sign-up';
 import Navigation from './components/navigation';
 
 import {

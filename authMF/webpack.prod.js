@@ -18,7 +18,7 @@ module.exports = merge(common, {
       },
       exposes: {
         './SignInPage': './src/pages/signIn',
-        './SignUpPage': './src/pages/signUp',
+        './SignUpPage': './src/pages/sign-up',
       },
       shared: [
         { react: { requiredVersion: '^18.1.0' } },
