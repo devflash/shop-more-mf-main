@@ -26,7 +26,6 @@ const hide = css`
 `;
 
 const Toast = ({ open, text, isError, callback }) => {
-  console.log('components');
   useEffect(() => {
     if (open) {
       if (interval) {

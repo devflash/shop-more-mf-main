@@ -65,7 +65,6 @@ export default {
       } catch (e) {
         const error_code = e?.response?.data;
         this.serviceError = getErrorMessage(error_code);
-        console.log(e);
       }
       this.setLoader({ isLoading: false, isBackdrop: false });
     },
@@ -109,10 +108,7 @@ export default {
   },
   mounted() {
     this.setLoader({ isLoading: true, isBackdrop: false });
-
-    console.log(API_SERVER);
     this.fetchData();
-    console.log('Fetching...');
   },
 };
 </script>

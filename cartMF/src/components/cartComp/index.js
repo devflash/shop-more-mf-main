@@ -208,7 +208,7 @@ const CartComp = ({ userId, navigateRoute }) => {
   const { cart, updateCart } = useOrderContext();
   const { API_SERVER } = config;
   const [{ isLoading, isBackdrop }, setLoading] = useLoader({});
-  console.log('testing cart pipeline!');
+
   const [state, dispatch] = useReducer((state, newState) => {
     return {
       ...state,
