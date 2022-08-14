@@ -2,7 +2,7 @@ name: auth-deployment
 
 on:
   push:
-    branches: ['github-action']
+    branches: ['master']
     paths:
       - 'authMF/**'
 

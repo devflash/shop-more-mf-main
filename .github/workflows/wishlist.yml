@@ -2,7 +2,7 @@ name: wishlist-deployment
 
 on:
   push:
-    branches: ['github-action']
+    branches: ['master']
     paths:
       - 'wishlistMF/**'
 

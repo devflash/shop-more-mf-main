@@ -2,7 +2,7 @@ name: container-deployment
 
 on:
   push:
-    branches: ['github-action']
+    branches: ['master']
     paths:
       - 'containerMf/**'
 

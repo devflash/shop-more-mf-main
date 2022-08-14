@@ -2,7 +2,7 @@ name: products-deployment
 
 on:
   push:
-    branches: ['github-action']
+    branches: ['master']
     paths:
       - 'productMF/**'
 
