@@ -182,7 +182,6 @@ const Product = ({ navigateRoute, productId = '0WC46FebJ8ppvjDbmPqg' }) => {
           dispatch({ success: 'Product has been added to your cart' });
         }
       } catch (e) {
-        console.log(e);
         const error_code = e?.response?.data;
         const serviceError = getErrorMessage(error_code);
         dispatch({ serviceError });

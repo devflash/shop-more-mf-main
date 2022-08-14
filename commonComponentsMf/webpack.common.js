@@ -1,4 +1,4 @@
-const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
 
 module.exports = {
@@ -29,11 +29,13 @@ module.exports = {
         { react: { requiredVersion: '^18.1.0' } },
         'react-dom/client',
         'react-icons',
+        '@emotion/react',
+        'react-icons',
+        'react-router-dom',
       ],
     }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
   ],
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-  },
 };
