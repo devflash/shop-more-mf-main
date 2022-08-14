@@ -22,7 +22,7 @@ module.exports = merge(common, {
         commonComponentMf: `commonComponentMf@//localhost:8082/remoteEntry.js`,
       },
       exposes: {
-        './SignUpPage': './src/pages/signUp',
+        './SignUpPage': './src/pages/sign-up',
         './SignInPage': './src/pages/signIn',
       },
       shared: [

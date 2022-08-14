@@ -14,7 +14,7 @@ module.exports = merge(common, {
       name: 'ordersMf',
       filename: 'remoteEntry.js',
       remotes: {
-        commonComponentMf: `commonComponentMf@${domain}/commonComponentMf/remoteEntry.js`,
+        commonComponentMf: `commonComponentMf@/commonComponentsmf/latest/remoteEntry.js`,
       },
       exposes: {
         './OrdersPage': './src/pages/orders',
@@ -37,5 +37,6 @@ module.exports = merge(common, {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
+    publicPath: '/ordersmf/latest/',
   },
 });

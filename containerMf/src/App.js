@@ -12,6 +12,7 @@ import {
 } from '@devflash/shared-shopmore-lib';
 
 const App = () => {
+  console.log('container!!!');
   const auth = useAuth();
   const orders = useOrders();
   return (

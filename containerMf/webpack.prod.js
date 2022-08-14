@@ -2,9 +2,9 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const Dotenv = require('dotenv-webpack');
 const path = require('path');
-const domain = process.env.PROD_DOMAIN;
 const { ModuleFederationPlugin } = require('webpack').container;
 
+const domain = process.env.PROD_DOMAIN;
 module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
@@ -12,12 +12,12 @@ module.exports = merge(common, {
     new ModuleFederationPlugin({
       name: 'containerMf',
       remotes: {
-        commonComponentMf: `commonComponentMf@${domain}commonComponentMf/remoteEntry.js`,
-        productMf: `productMf@${domain}/productMf/remoteEntry.js`,
-        authMf: `authMf@${domain}/authMf/remoteEntry.js`,
-        ordersMf: `ordersMf@${domain}/ordersMf/remoteEntry.js`,
-        cartMf: `cartMf@${domain}/cartMf/remoteEntry.js`,
-        wishlistMf: `wishlistMf@${domain}/wishlistMf/remoteEntry.js`,
+        commonComponentMf: `commonComponentMf@/commonComponentsmf/latest/remoteEntry.js`,
+        productMf: `productMf@/productmf/latest/remoteEntry.js`,
+        authMf: `authMf@/authmf/latest/remoteEntry.js`,
+        ordersMf: `ordersMf@/ordersmf/latest/remoteEntry.js`,
+        cartMf: `cartMf@/cartmf/latest/remoteEntry.js`,
+        wishlistMf: `wishlistMf@/wishlistmf/latest/remoteEntry.js`,
       },
       shared: [
         { react: { requiredVersion: '^18.1.0' } },

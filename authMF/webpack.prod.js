@@ -14,11 +14,11 @@ module.exports = merge(common, {
       name: 'authMf',
       filename: 'remoteEntry.js',
       remotes: {
-        commonComponentMf: `commonComponentMf@${domain}/commonComponentMf/remoteEntry.js`,
+        commonComponentMf: `commonComponentMf@/commonComponentsmf/latest/remoteEntry.js`,
       },
       exposes: {
-        './SignUpPage': './src/pages/signUp',
         './SignInPage': './src/pages/signIn',
+        './SignUpPage': './src/pages/sign-up',
       },
       shared: [
         { react: { requiredVersion: '^18.1.0' } },
@@ -39,5 +39,6 @@ module.exports = merge(common, {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
+    publicPath: '/authmf/latest/',
   },
 });
