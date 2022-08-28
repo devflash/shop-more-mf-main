@@ -57,7 +57,7 @@ const buyBtn = css`
 `;
 
 const cancelBtn = css`
-  background-color: #e74c3c;
+  background-color: #c0392b;
   color: #fff;
   border: 1px solid #e74c3c;
   font-size: 12px;
